@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Organizze</string>
+    <string name="txt_titulo_inicio">Crie sua conta grátis</string>
+    <string name="txt_frase_inicio">Junte-se a mais de \nmeio milhão de pessoas</string>
+    <string name="txt_ja_tem_conta">Já tenho conta</string>
+    <string name="txt_cadastrar">Cadastrar</string>
+    <string name="txt_termos">Termos de uso</string>
+    <string name="txt_nome">Nome</string>
+    <string name="txt_email">Email</string>
+    <string name="txt_senha">Senha</string>
+    <string name="txt_login">Acesse sua conta</string>
+    <string name="entrar">Entrar</string>
+    <string name="txt_esqueci_senha">Esqueceu sua senha?</string>
+    <string name="title_activity_principal">PrincipalActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+<!--    Despesas/Receitas-->
+    <string name="ex_data">Ex: 17/06/2024</string>
+    <string name="ex_categoria">Ex: salário</string>
+    <string name="ex_descricao">Ex: salário mensal</string>
+    <string name="float_button_desc">float_button_desc</string>
+    <string name="data">%s%s/%s%s/%s%s%s%s</string>
+</resources>

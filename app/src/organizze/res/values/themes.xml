@@ -1,0 +1,43 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AppsComFireBase" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent </item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    </style>
+
+<!--    Estilo Despesas-->
+    <style name="despesaStyle" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimaryDespesas</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkDespesas</item>
+        <item name="colorAccent">@color/colorAccentDespesas</item>
+        <item name="tint">@color/white</item>
+    </style>
+<!--    Estilo Receitas-->
+
+    <style name="receitaStyle" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimaryReceitas</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkReceitas</item>
+        <item name="colorAccent">@color/colorAccentReceitas</item>
+    </style>
+
+    <style name="Theme.AppsComFireBase" parent="Base.Theme.AppsComFireBase" />
+    <style name="Theme.AppsComFireBase.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+<!--    <style name="Theme.AppsComFireBase.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+<!--    <style name="Theme.AppsComFireBase.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
+
+
+</resources>

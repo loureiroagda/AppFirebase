@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name=".activity.ReceitaActivity"
+            android:exported="true"
+            android:theme="@style/receitaStyle"/>
+        <activity
+            android:name=".activity.DespesasActivity"
+            android:exported="true"
+            android:theme="@style/despesaStyle"/>
+        <activity
+            android:name=".activity.PrincipalActivity"
+            android:exported="true"
+            android:label="@string/title_activity_principal"
+            android:theme="@style/Theme.AppsComFireBase.NoActionBar" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.CadastroActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true" />
+    </application>
+
+</manifest>

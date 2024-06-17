@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PrincipalActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_logout"
+            android:onClick="logout"
+            android:background="@color/colorPrimary"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_principal"/>
+
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="10dp"
+        app:fab_addButtonColorNormal="@color/colorAccent">
+        
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabDespesa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_icon="@drawable/ic_despesa"
+            app:fab_title="Despesa"
+            app:fab_label="Despesas"
+            android:onClick="addDespesas"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/colorPrimaryDespesas"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabReceita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_icon="@drawable/ic_receita"
+            app:fab_title="Receita"
+            app:fab_label="Receita"
+            android:onClick="addReceita"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/colorPrimaryReceitas"/>
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
