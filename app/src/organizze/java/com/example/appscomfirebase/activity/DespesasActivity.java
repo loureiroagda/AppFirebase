@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.appscomfirebase.R;
 import com.example.appscomfirebase.databinding.ActivityDespesasBinding;
@@ -25,6 +26,7 @@ public class DespesasActivity extends AppCompatActivity {
         binding = ActivityDespesasBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //Colocando a data do dia no campo data
         binding.txtData.setText(DataCustom.dataAtual());
     }
 
@@ -42,17 +44,34 @@ public class DespesasActivity extends AppCompatActivity {
             //Salvando dados em um nó especifico
             String data = binding.txtData.getText().toString();
             movimentacao.salvar(data);
-
-
-        }else {
-
         }
     }
 
     public Boolean validarDados(){
 
+        if(!binding.editValor.getText().toString().isEmpty()){
+            if (!binding.txtData.getText().toString().isEmpty()){
+                if (!binding.txtCategoria.getText().toString().isEmpty()){
+                    if (!binding.txtDescricao.getText().toString().isEmpty()){
+                        return true;
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Descrição da despesa não informada!", Toast.LENGTH_LONG).show();
+                        return false;
+                    }
 
+                }else {
+                    Toast.makeText(getApplicationContext(), "Categoria da despesa não informada!", Toast.LENGTH_LONG).show();
+                    return false;
+                }
 
-        return true;
+            }else {
+                Toast.makeText(getApplicationContext(), "Data não informado!", Toast.LENGTH_LONG).show();
+                return false;
+            }
+
+        }else {
+            Toast.makeText(getApplicationContext(), "Valor não informado!", Toast.LENGTH_LONG).show();
+            return false;
+        }
     }
 }
