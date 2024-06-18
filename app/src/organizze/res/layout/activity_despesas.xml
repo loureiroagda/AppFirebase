@@ -47,6 +47,7 @@
         app:layout_constraintVertical_chainStyle="packed">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/ex_data"
@@ -68,6 +69,7 @@
         app:layout_constraintBottom_toTopOf="@+id/edit_descricao_desp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_categoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/ex_categoria"
@@ -88,6 +90,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_categoria_desp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_descricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/ex_descricao"
@@ -95,7 +98,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_desp"
+        android:id="@+id/fab_salvar_desp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
