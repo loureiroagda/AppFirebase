@@ -51,7 +51,7 @@ public class ReceitaActivity extends AppCompatActivity {
             movimentacao.setCategoria(binding.txtCategoria.getText().toString());
             movimentacao.setData(binding.txtData.getText().toString());
             movimentacao.setDescricao(binding.txtDescricao.getText().toString());
-            movimentacao.setTipo("d");
+            movimentacao.setTipo("r");
 
             receitaAtual = receita + receitaTotal;
 
