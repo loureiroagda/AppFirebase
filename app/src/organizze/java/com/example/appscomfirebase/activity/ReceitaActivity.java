@@ -111,6 +111,6 @@ public class ReceitaActivity extends AppCompatActivity {
 
     public void atualizaReceita(){
 
-        usuarioRef.child("despesaTotal").setValue(receitaAtual);
+        usuarioRef.child("receitaTotal").setValue(receitaAtual);
     }
 }
