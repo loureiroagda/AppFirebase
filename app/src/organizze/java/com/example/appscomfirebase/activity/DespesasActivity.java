@@ -27,8 +27,11 @@ import java.util.Date;
 public class DespesasActivity extends AppCompatActivity {
     private ActivityDespesasBinding binding;
     private Movimentacao movimentacao;
-    private DatabaseReference reference = ConfiguracaoFirebase.getFirebaseDataBase();
     private FirebaseAuth auth = ConfiguracaoFirebase.getAutentificacao();
+    private DatabaseReference reference = ConfiguracaoFirebase.getFirebaseDataBase();
+    private String email = auth.getCurrentUser().getEmail();
+    private String id = Base64Custom.codificarBase64(email);
+    private DatabaseReference usuario = reference.child("usuarios").child(id);
     private double despesaTotal,despesa,despesaAtual;
 
 
@@ -96,7 +99,9 @@ public class DespesasActivity extends AppCompatActivity {
     public void recuperaDespesatotal(){
 
         //Recuperando a despesa total do bando de dados
-        ConfiguracaoFirebase.getUsuario().addValueEventListener(new ValueEventListener() {
+
+
+        usuario.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Usuario usuario = snapshot.getValue(Usuario.class);
@@ -114,6 +119,6 @@ public class DespesasActivity extends AppCompatActivity {
 
     public void atualizaDespesa(){
 
-        ConfiguracaoFirebase.getUsuario().child("despesaTotal").setValue(despesaAtual);
+        usuario.child("despesaTotal").setValue(despesaAtual);
     }
 }

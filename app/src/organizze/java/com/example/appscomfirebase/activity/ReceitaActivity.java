@@ -24,8 +24,11 @@ import com.google.firebase.database.ValueEventListener;
 public class ReceitaActivity extends AppCompatActivity {
     private ActivityReceitaBinding binding;
     private Movimentacao movimentacao;
-    private DatabaseReference reference = ConfiguracaoFirebase.getFirebaseDataBase();
     private FirebaseAuth auth = ConfiguracaoFirebase.getAutentificacao();
+    private DatabaseReference reference = ConfiguracaoFirebase.getFirebaseDataBase();
+    private String email = auth.getCurrentUser().getEmail();
+    private String id = Base64Custom.codificarBase64(email);
+    private DatabaseReference usuario = reference.child("usuarios").child(id);
     private double receitaTotal,receita,receitaAtual;
 
 
@@ -92,7 +95,7 @@ public class ReceitaActivity extends AppCompatActivity {
     public void recuperaReceitatotal(){
 
         //Recuperando a despesa total do bando de dados
-        ConfiguracaoFirebase.getUsuario().addValueEventListener(new ValueEventListener() {
+        usuario.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Usuario usuario = snapshot.getValue(Usuario.class);
@@ -110,6 +113,6 @@ public class ReceitaActivity extends AppCompatActivity {
 
     public void atualizaReceita(){
 
-        ConfiguracaoFirebase.getUsuario().child("receitaTotal").setValue(receitaAtual);
+        usuario.child("receitaTotal").setValue(receitaAtual);
     }
 }

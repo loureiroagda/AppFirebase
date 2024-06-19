@@ -32,12 +32,4 @@ public class ConfiguracaoFirebase {
         }
         return reference;
     }
-
-    public static DatabaseReference getUsuario(){
-
-        String email = autentifica.getCurrentUser().getEmail();
-        String id = Base64Custom.codificarBase64(email);
-        DatabaseReference usuario = reference.child("usuarios").child(id);
-        return usuario;
-    }
 }
