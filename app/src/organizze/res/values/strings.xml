@@ -29,4 +29,9 @@
     <string name="ex_descricao">Ex: salário mensal</string>
     <string name="float_button_desc">float_button_desc</string>
     <string name="data">%s%s/%s%s/%s%s%s%s</string>
+
+<!--    Tela principal-->
+    <string name="p_titulo">Carregando...</string>
+    <string name="p_valor">R$ %s</string>
+    <string name="p_saldoG">saldo geral</string>
 </resources>
