@@ -1,5 +1,6 @@
 package com.example.appscomfirebase.config;
 
+import com.example.appscomfirebase.helper.Base64Custom;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -30,5 +31,13 @@ public class ConfiguracaoFirebase {
             reference = database.getReference();
         }
         return reference;
+    }
+
+    public static DatabaseReference getUsuario(){
+
+        String email = autentifica.getCurrentUser().getEmail();
+        String id = Base64Custom.codificarBase64(email);
+        DatabaseReference usuario = reference.child("usuarios").child(id);
+        return usuario;
     }
 }

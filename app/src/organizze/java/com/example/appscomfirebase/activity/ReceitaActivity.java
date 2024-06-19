@@ -28,8 +28,7 @@ public class ReceitaActivity extends AppCompatActivity {
     private FirebaseAuth auth = ConfiguracaoFirebase.getAutentificacao();
     private double receitaTotal,receita,receitaAtual;
 
-    private String idUsuario = Base64Custom.codificarBase64(auth.getCurrentUser().getEmail());
-    private DatabaseReference usuarioRef = reference.child("usuarios").child(idUsuario);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,7 +92,7 @@ public class ReceitaActivity extends AppCompatActivity {
     public void recuperaReceitatotal(){
 
         //Recuperando a despesa total do bando de dados
-        usuarioRef.addValueEventListener(new ValueEventListener() {
+        ConfiguracaoFirebase.getUsuario().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Usuario usuario = snapshot.getValue(Usuario.class);
@@ -111,6 +110,6 @@ public class ReceitaActivity extends AppCompatActivity {
 
     public void atualizaReceita(){
 
-        usuarioRef.child("receitaTotal").setValue(receitaAtual);
+        ConfiguracaoFirebase.getUsuario().child("receitaTotal").setValue(receitaAtual);
     }
 }

@@ -31,9 +31,6 @@ public class DespesasActivity extends AppCompatActivity {
     private FirebaseAuth auth = ConfiguracaoFirebase.getAutentificacao();
     private double despesaTotal,despesa,despesaAtual;
 
-    private String idUsuario = Base64Custom.codificarBase64(auth.getCurrentUser().getEmail());
-    private DatabaseReference usuarioRef = reference.child("usuarios").child(idUsuario);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +96,7 @@ public class DespesasActivity extends AppCompatActivity {
     public void recuperaDespesatotal(){
 
         //Recuperando a despesa total do bando de dados
-        usuarioRef.addValueEventListener(new ValueEventListener() {
+        ConfiguracaoFirebase.getUsuario().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Usuario usuario = snapshot.getValue(Usuario.class);
@@ -117,6 +114,6 @@ public class DespesasActivity extends AppCompatActivity {
 
     public void atualizaDespesa(){
 
-        usuarioRef.child("despesaTotal").setValue(despesaAtual);
+        ConfiguracaoFirebase.getUsuario().child("despesaTotal").setValue(despesaAtual);
     }
 }
