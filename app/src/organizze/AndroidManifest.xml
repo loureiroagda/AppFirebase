@@ -14,7 +14,7 @@
             android:name=".activity.PrincipalActivity"
             android:exported="true"
             android:label="@string/title_activity_principal"
-            android:theme="@style/Theme.AppsComFireBase.NoActionBar" />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".activity.LoginActivity"
             android:exported="true" />

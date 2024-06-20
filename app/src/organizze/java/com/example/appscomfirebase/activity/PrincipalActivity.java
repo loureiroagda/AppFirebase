@@ -1,14 +1,18 @@
 package com.example.appscomfirebase.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.appscomfirebase.R;
 import com.example.appscomfirebase.adapter.AdapterMovimentacao;
@@ -59,6 +63,7 @@ public class PrincipalActivity extends AppCompatActivity {
         calendario = findViewById(R.id.calendarView);
         configCalendario();
 
+
         mRecycler = findViewById(R.id.movimentos_recycler);
 
         //Configurar adapter
@@ -69,6 +74,8 @@ public class PrincipalActivity extends AppCompatActivity {
         mRecycler.setLayoutManager(layoutManager);
         mRecycler.setHasFixedSize(true);
         mRecycler.setAdapter(adapterMovimentacao);
+
+        swipe();
     }
 
     public void addDespesas(View v){
@@ -86,6 +93,8 @@ public class PrincipalActivity extends AppCompatActivity {
         startActivities(new Intent[]{new Intent(this, MainActivity.class)});
     }
 
+    //Configura o calendário e instancia uma String
+    // para uso na busca no DB de movimentação
     public void configCalendario(){
 
         CharSequence meses[] = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"};
@@ -107,6 +116,7 @@ public class PrincipalActivity extends AppCompatActivity {
         });
     }
 
+    //Recupera os dados do usuário no DB
     private void recuperarResumo(){
 
         String email = auth.getCurrentUser().getEmail();
@@ -142,6 +152,7 @@ public class PrincipalActivity extends AppCompatActivity {
         });
     }
 
+    //Recupera os dados das movimentações do usuário no DB
     private void recuperarMovimentacao(){
         String email = auth.getCurrentUser().getEmail();
         String id = Base64Custom.codificarBase64(email);
@@ -171,6 +182,54 @@ public class PrincipalActivity extends AppCompatActivity {
         });
     }
 
+    //Cria um swipe para exclusão de dados no DB da movimentação
+    public void swipe(){
+        ItemTouchHelper.Callback itemToch = new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+
+                int dragFlag = ItemTouchHelper.ACTION_STATE_IDLE;
+                int swipFlags = ItemTouchHelper.START| ItemTouchHelper.END;
+
+                return makeMovementFlags(dragFlag,swipFlags);
+            }
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+                excluirMove(viewHolder);
+            }
+        };
+
+        new ItemTouchHelper(itemToch).attachToRecyclerView(mRecycler);
+    }
+
+    public void excluirMove(RecyclerView.ViewHolder viewHolder){
+
+        AlertDialog.Builder alerta = new AlertDialog.Builder(this);
+
+        //Composição do alerta
+        alerta.setTitle("Excuir movimentação");
+        alerta.setMessage("Tem certeza de que deseja excluir essa movimentação?");
+        alerta.setCancelable(false);
+
+        alerta.setPositiveButton("Confirmar", (dialog, which) -> {
+
+        });
+
+        alerta.setNegativeButton("Cancelar", (dialog, which) -> {
+
+            Toast.makeText(getApplicationContext(), "Operação cancelada", Toast.LENGTH_LONG).show();
+
+        });
+
+        AlertDialog alertDialog = alerta.create();
+        alertDialog.show();
+    }
 
     @Override
     protected void onStart() {
