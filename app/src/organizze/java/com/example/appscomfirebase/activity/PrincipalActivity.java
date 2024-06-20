@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.appscomfirebase.R;
 import com.example.appscomfirebase.config.ConfiguracaoFirebase;
@@ -26,6 +27,11 @@ public class PrincipalActivity extends AppCompatActivity {
     private Double despesaT = 0.0, receitaT = 0.0, resumo = 0.0;
     private FirebaseAuth auth = ConfiguracaoFirebase.getAutentificacao();
     private DatabaseReference reference = ConfiguracaoFirebase.getFirebaseDataBase();
+    private DatabaseReference usuario;
+    private ValueEventListener eventListenerUsuario;
+
+    TextView saldo, pessoa;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +39,7 @@ public class PrincipalActivity extends AppCompatActivity {
         binding = ActivityPrincipalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        recuperarResumo();
+
     }
 
     public void addDespesas(View v){
@@ -55,9 +61,9 @@ public class PrincipalActivity extends AppCompatActivity {
 
         String email = auth.getCurrentUser().getEmail();
         String id = Base64Custom.codificarBase64(email);
-        DatabaseReference usuario = reference.child("usuarios").child(id);
+        usuario = reference.child("usuarios").child(id);
 
-        usuario.addValueEventListener(new ValueEventListener() {
+        eventListenerUsuario = usuario.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -75,8 +81,8 @@ public class PrincipalActivity extends AppCompatActivity {
                 String resultadoFormato = decimalFormat.format(resumo);
 
                 //Setando os dados
-                binding.pValor.setText(getResources().getString(R.string.p_valor, resultadoFormato));
-                binding.pTitulo.setText(getString(R.string.p_titulo,usuario.getNome()));
+                saldo.setText(getResources().getString(R.string.p_valor, resultadoFormato));
+                pessoa.setText(getString(R.string.p_titulo,usuario.getNome()));
             }
 
             @Override
@@ -86,4 +92,21 @@ public class PrincipalActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        saldo = findViewById(R.id.p_valor);
+        pessoa = findViewById(R.id.p_titulo);
+
+        recuperarResumo();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        usuario.removeEventListener(eventListenerUsuario);
+    }
 }

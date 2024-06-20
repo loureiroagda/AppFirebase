@@ -61,6 +61,7 @@ public class ReceitaActivity extends AppCompatActivity {
             //Salvando dados em um nó especifico
             String data = binding.txtData.getText().toString();
             movimentacao.salvar(data);
+            finish();
         }
     }
 

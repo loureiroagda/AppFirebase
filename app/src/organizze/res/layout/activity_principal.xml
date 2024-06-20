@@ -7,80 +7,23 @@
     android:layout_height="match_parent"
     tools:context=".activity.PrincipalActivity">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/p_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:elevation="0dp">
+            app:titleTextColor="@color/white"
+            app:navigationIcon="@drawable/ic_logout"
+            app:navigationContentDescription="sair"
+            android:onClick="logout"
+            android:background="@color/colorPrimary"/>
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/p_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:titleTextColor="@color/white"
-                app:navigationIcon="@drawable/ic_logout"
-                app:navigationContentDescription="sair"
-                android:onClick="logout"
-                android:background="@color/colorPrimary"/>
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@color/colorPrimary"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/p_titulo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/carregando"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/p_valor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/carregando"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/p_sg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/p_saldoG"
-                android:textAlignment="center"
-                android:textColor="@color/white" />
-        </LinearLayout>
-
-        <CalendarView
-            android:id="@+id/p_calendario"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/movimentos_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+    <include layout="@layout/content_principal"/>
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:layout_width="wrap_content"
