@@ -48,17 +48,29 @@
             android:textColor="@color/white" />
     </LinearLayout>
 
-    <CalendarView
-        android:id="@+id/p_calendario"
+<!--    <CalendarView-->
+<!--        android:id="@+id/p_calendario"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />-->
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/calendarView"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        app:mcv_tileSize="50dp"
+        app:mcv_showOtherDates="all"
+        app:mcv_selectionColor="@color/colorAccent"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/movimentos_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:elevation="0dp"/>
 
 </LinearLayout>
