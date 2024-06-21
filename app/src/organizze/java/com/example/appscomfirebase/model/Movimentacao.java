@@ -8,7 +8,7 @@ import com.google.firebase.database.DatabaseReference;
 
 public class Movimentacao {
 
-    private String data, categoria, descricao, tipo;
+    private String data, categoria, descricao, tipo, id;
     private double valor;
 
 
@@ -27,6 +27,14 @@ public class Movimentacao {
                 .child(DataCustom.dataEscolhida(data))
                 .push()
                 .setValue(this);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getData() {

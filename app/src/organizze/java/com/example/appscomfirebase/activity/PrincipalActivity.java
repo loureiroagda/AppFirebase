@@ -46,6 +46,7 @@ public class PrincipalActivity extends AppCompatActivity {
     private RecyclerView mRecycler;
     private AdapterMovimentacao adapterMovimentacao;
     private List<Movimentacao> movimentacoes = new ArrayList<>();
+    private Movimentacao movimenta;
     private DatabaseReference moveRef;
     private String mesAno;
     private MaterialCalendarView calendario;
@@ -152,6 +153,22 @@ public class PrincipalActivity extends AppCompatActivity {
         });
     }
 
+    //Atualizando o saldo total
+    public void atualizaSaldoT(){
+
+        String email = auth.getCurrentUser().getEmail();
+        String id = Base64Custom.codificarBase64(email);
+        usuario = reference.child("usuarios").child(id);
+
+        if(movimenta.getTipo().equals("r")){
+            receitaT = receitaT - movimenta.getValor();
+            usuario.child("receitaTotal").setValue(receitaT);
+        }else {
+            despesaT = despesaT - movimenta.getValor();
+            usuario.child("despesaTotal").setValue(despesaT);
+        }
+    }
+
     //Recupera os dados das movimentações do usuário no DB
     private void recuperarMovimentacao(){
         String email = auth.getCurrentUser().getEmail();
@@ -165,10 +182,10 @@ public class PrincipalActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 movimentacoes.clear();
-
                 for(DataSnapshot dados: snapshot.getChildren()){
 
                     Movimentacao movimentacao = dados.getValue(Movimentacao.class);
+                    movimentacao.setId(dados.getKey());
                     movimentacoes.add(movimentacao);
                 }
 
@@ -219,11 +236,26 @@ public class PrincipalActivity extends AppCompatActivity {
 
         alerta.setPositiveButton("Confirmar", (dialog, which) -> {
 
+            int posicao = viewHolder.getAdapterPosition();
+            movimenta = movimentacoes.get(posicao);
+
+            //Remover do banco de dados
+            String email = auth.getCurrentUser().getEmail();
+            String id = Base64Custom.codificarBase64(email);
+            moveRef = reference.child("movimentacao")
+                    .child(id)
+                    .child(mesAno);
+
+            moveRef.child(movimenta.getId()).removeValue();
+            adapterMovimentacao.notifyItemRemoved(posicao);
+
+            atualizaSaldoT();
         });
 
         alerta.setNegativeButton("Cancelar", (dialog, which) -> {
 
             Toast.makeText(getApplicationContext(), "Operação cancelada", Toast.LENGTH_LONG).show();
+            adapterMovimentacao.notifyDataSetChanged();
 
         });
 
