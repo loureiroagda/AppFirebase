@@ -21,6 +21,8 @@ import com.example.appscomfirebase.databinding.ActivityPrincipalBinding;
 import com.example.appscomfirebase.helper.Base64Custom;
 import com.example.appscomfirebase.model.Movimentacao;
 import com.example.appscomfirebase.model.Usuario;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,7 +52,6 @@ public class PrincipalActivity extends AppCompatActivity {
     private DatabaseReference moveRef;
     private String mesAno;
     private MaterialCalendarView calendario;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

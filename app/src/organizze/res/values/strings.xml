@@ -35,4 +35,5 @@
     <string name="p_valor">R$ %s</string>
     <string name="p_saldoG">saldo geral</string>
     <string name="carregando">Carregando...</string>
+    <string name="receita">Receita</string>
 </resources>

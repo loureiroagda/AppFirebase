@@ -15,4 +15,6 @@
     <color name="colorPrimaryDarkDespesas">#e66560</color>
     <color name="colorAccentDespesas">#ff706a</color>
     <color name="trasnparente">#00F44336</color>
+
+    <color name="black_semi_transparent">#B2000000</color>
 </resources>

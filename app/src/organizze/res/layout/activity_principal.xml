@@ -30,15 +30,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="10dp"
+        app:fab_labelStyle="@style/menu_labels_style"
         app:fab_addButtonColorNormal="@color/colorAccent">
-        
+
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabDespesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_icon="@drawable/ic_despesa"
             app:fab_title="Despesa"
-            app:fab_label="Despesas"
+            android:labelFor="@id/fabReceita"
             android:onClick="addDespesas"
             app:fab_size="mini"
             app:fab_colorNormal="@color/colorPrimaryDespesas"/>
@@ -49,7 +50,6 @@
             android:layout_height="wrap_content"
             app:fab_icon="@drawable/ic_receita"
             app:fab_title="Receita"
-            app:fab_label="Receita"
             android:onClick="addReceita"
             app:fab_size="mini"
             app:fab_colorNormal="@color/colorPrimaryReceitas"/>
